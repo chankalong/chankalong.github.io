@@ -1,7 +1,6 @@
 ---
 title: "Re:Fresh E-Platform Usage"
 output: html_document
-#runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
@@ -20,7 +19,7 @@ participant_frequency_wide <- read_sheet("1hTfspCDSNFCLp5qOlayq0wwr8gJfTVBbAyWsK
 ## Table
 
 ```{r table, echo=FALSE}
-formattable(participant_frequency_wide, list(人次 = color_tile("transparent", "pink"), 人數 = color_tile("transparent", "lightblue")))
+formattable(participant_frequency_wide, list(人次 = color_tile("transparent", "pink"), 人數 = color_tile("transparent", "pink")))
 ```
 
 ## Plot
