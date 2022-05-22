@@ -1,0 +1,36 @@
+---
+title: "Re:Fresh E-Platform Usage"
+output: html_document
+#runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(formattable)
+library(forcats)
+library(magrittr)
+library(highcharter) # highchart plot
+library(googlesheets4)
+ss <- "1hTfspCDSNFCLp5qOlayq0wwr8gJfTVBbAyWsKaR7Ai8"
+gs4_deauth()
+participant_frequency_long <- read_sheet("1hTfspCDSNFCLp5qOlayq0wwr8gJfTVBbAyWsKaR7Ai8", sheet = "participant_frequency_long")
+participant_frequency_wide <- read_sheet("1hTfspCDSNFCLp5qOlayq0wwr8gJfTVBbAyWsKaR7Ai8", sheet = "participant_frequency_wide")
+```
+
+## Table
+
+```{r table, echo=FALSE}
+formattable(participant_frequency_wide, list(人次 = color_tile("transparent", "pink"), 人數 = color_tile("transparent", "lightblue")))
+```
+
+## Plot
+
+```{r plot, echo=FALSE}
+hchart(participant_frequency_long, "spline", hcaes(x = fct_reorder(factor(year.month), rowid), y = eventCount , group = eventName_r)) %>%
+      hc_tooltip(
+        crosshairs = TRUE,
+        backgroundColor = "#F0F0F0",
+        shared = TRUE, 
+        borderWidth = 5
+      ) %>% hc_xAxis(title = "") %>% hc_yAxis(title = "")
+```
