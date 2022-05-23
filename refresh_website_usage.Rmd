@@ -4,22 +4,28 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+Sys.setlocale(category = "LC_ALL", locale = "cht") # windows
 knitr::opts_chunk$set(echo = TRUE)
 library(formattable)
 library(forcats)
 library(magrittr)
+library(dplyr)
 library(highcharter) # highchart plot
 library(googlesheets4)
 ss <- "1hTfspCDSNFCLp5qOlayq0wwr8gJfTVBbAyWsKaR7Ai8"
 gs4_deauth()
-participant_frequency_long <- read_sheet("1hTfspCDSNFCLp5qOlayq0wwr8gJfTVBbAyWsKaR7Ai8", sheet = "participant_frequency_long")
-participant_frequency_wide <- read_sheet("1hTfspCDSNFCLp5qOlayq0wwr8gJfTVBbAyWsKaR7Ai8", sheet = "participant_frequency_wide")
+participant_frequency_long <- read_sheet("1hTfspCDSNFCLp5qOlayq0wwr8gJfTVBbAyWsKaR7Ai8", sheet = "participant_frequency_long")  %>% 
+  mutate(eventName_r = case_when(eventName == "page_view" ~ "人次", eventName == "first_visit" ~ "人數"))
+participant_frequency_wide <- read_sheet("1hTfspCDSNFCLp5qOlayq0wwr8gJfTVBbAyWsKaR7Ai8", sheet = "participant_frequency_wide") %>% select(7, 3, 8) 
+colnames(participant_frequency_wide)[2] <- "人次"
+colnames(participant_frequency_wide)[3] <- "人數"
+colnames(participant_frequency_wide)[1] <- "日期"
 ```
 
 ## Table
 
 ```{r table, echo=FALSE}
-formattable(participant_frequency_wide, list(人次 = color_tile("transparent", "pink"), 人數 = color_tile("transparent", "red")))
+formattable(participant_frequency_wide, list('人次' = color_tile("transparent", "pink"), '人數' = color_tile("transparent", "lightblue")))
 ```
 
 ## Plot
