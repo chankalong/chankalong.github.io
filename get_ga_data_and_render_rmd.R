@@ -1,7 +1,7 @@
 # get the current location
 #library(here)
 #here::set_here()
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+#setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 #setwd(getSrcDirectory()[1])
 #this.dir <- dirname(parent.frame(2)$ofile)
 #setwd(this.dir)
