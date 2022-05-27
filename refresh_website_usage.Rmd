@@ -47,7 +47,7 @@ hchart(participant_frequency_long, "spline", hcaes(x = fct_reorder(factor(year.m
 ```
 
 
-## Daily Plot
+## Daily Plot (10-day Moving Average)
 
 ```{r daily plot, out.width='100%', echo=FALSE}
 highchart(type = "stock") %>% 
