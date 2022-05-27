@@ -56,7 +56,7 @@ data_1 <- data %>% arrange(date) %>% mutate(pageTitle = str_replace(pageTitle, p
 
 # separate different event
 page_view <- data_1 %>% filter(eventName == "page_view") %>% group_by(date, month, year, eventName) %>% summarize(eventCount = sum(eventCount), activeUsers = sum(activeUsers)) %>% mutate(eventCountPerUser = eventCount / activeUsers) %>% 
-  arrange(date, desc(eventCount)) %>% bind_rows(wix_page_view) %>% ungroup() %>% bind_rows(recovery_pageview) %>% ungroup() %>% arrange(date) %>% group_by(date) %>% summarise(eventCount = sum(eventCount)) %>% ungroup() %>% mutate(moving.average = runMean(.$eventCount))
+  arrange(date, desc(eventCount)) %>% bind_rows(wix_page_view) %>% ungroup() %>% bind_rows(recovery_pageview) %>% ungroup() %>% arrange(date) %>% group_by(date, month, year, eventName) %>% summarise(eventCount = sum(eventCount)) %>% ungroup() %>% mutate(moving.average = runMean(.$eventCount))
 write_sheet(page_view, ss = ss, sheet = "page_view")
 
 page_view_unique <- data_1 %>% filter(eventName == "first_visit") %>% group_by(date, month, year, eventName) %>% summarize(eventCount = sum(eventCount), activeUsers = sum(activeUsers)) %>% mutate(eventCountPerUser = eventCount / activeUsers) %>% 
@@ -67,6 +67,14 @@ page_view_time <- data_1 %>% filter(eventName == "user_engagement") %>% group_by
 
 entrance <- data_1 %>% filter(eventName == "session_start") %>% group_by(date, month, year, eventName) %>% summarize(eventCount = sum(eventCount), activeUsers = sum(activeUsers)) %>% mutate(eventCountPerUser = eventCount / activeUsers) %>% 
   arrange(date, desc(eventCount)) %>% ungroup()
+
+imput_page_view_unique <- page_view_unique %>% filter(date < "2022-04-01" | date > "2022-04-27") %>% bind_rows(recovery_pageview)  %>% 
+  arrange(date) %>% mutate(eventCount = ifelse(date >= "2022-04-01" & date <= "2022-04-27", NA, eventCount)) %>% 
+  select(-eventName, -activeUsers, - eventCountPerUser)
+imput_page_view_unique_df <- mice(imput_page_view_unique, method = 'norm.boot', seed = 500)
+imput_page_view_unique[212:238, 4] <- ceiling(as.vector(rowMeans(imput_page_view_unique_df$imp$eventCount)))
+imput_page_view_unique <- imput_page_view_unique %>% mutate(moving.average = runMean(imput_page_view_unique$eventCount))
+write_sheet(imput_page_view_unique, ss = ss, sheet = "imput_page_view_unique")
 
 #moving_average = runMean(page_view$eventCount)
 

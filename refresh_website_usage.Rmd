@@ -25,6 +25,7 @@ colnames(participant_frequency_wide)[2] <- "人次"
 colnames(participant_frequency_wide)[3] <- "人數"
 colnames(participant_frequency_wide)[1] <- "日期"
 xts_page_view <- read_sheet(ss, sheet = "page_view") %>% column_to_rownames(var = "date") %>% select(moving.average) %>% as.xts()
+xts_imput_page_view_unique <- read_sheet(ss, sheet = "imput_page_view_unique") %>% column_to_rownames(var = "date") %>% select(moving.average) %>% as.xts()
 ```
 
 ## Table
@@ -33,7 +34,7 @@ xts_page_view <- read_sheet(ss, sheet = "page_view") %>% column_to_rownames(var 
 participant_frequency_wide %>% mutate('人次' = color_tile("transparent", "pink")(人次), '人數' = color_tile("transparent", "lightblue")(人數)) %>% kable("html", escape = F, full_width = T, align = "c") %>% kable_styling("hover", full_width = T)
 ```
 
-## Plot
+## Monthly Plot
 
 ```{r plot, out.width='100%', echo=FALSE}
 hchart(participant_frequency_long, "spline", hcaes(x = fct_reorder(factor(year.month), rowid), y = eventCount , group = eventName_r)) %>%
@@ -46,9 +47,10 @@ hchart(participant_frequency_long, "spline", hcaes(x = fct_reorder(factor(year.m
 ```
 
 
-## Daily 人次
+## Daily Plot
 
 ```{r daily plot, out.width='100%', echo=FALSE}
 highchart(type = "stock") %>% 
-  hc_add_series(xts_page_view, yAxis = 0, name = "人次")
+  hc_add_series(xts_page_view, yAxis = 0, name = "人次") %>% 
+  hc_add_series(xts_imput_page_view_unique, yAxis = 0, name = "人數")
 ```
