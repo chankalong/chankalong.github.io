@@ -56,7 +56,8 @@ data_1 <- data %>% arrange(date) %>% mutate(pageTitle = str_replace(pageTitle, p
 
 # separate different event
 page_view <- data_1 %>% filter(eventName == "page_view") %>% group_by(date, month, year, eventName) %>% summarize(eventCount = sum(eventCount), activeUsers = sum(activeUsers)) %>% mutate(eventCountPerUser = eventCount / activeUsers) %>% 
-  arrange(date, desc(eventCount)) %>% bind_rows(wix_page_view) %>% ungroup() 
+  arrange(date, desc(eventCount)) %>% bind_rows(wix_page_view) %>% ungroup() %>% bind_rows(recovery_pageview) %>% ungroup() %>% arrange(date) %>% group_by(date) %>% summarise(eventCount = sum(eventCount)) %>% ungroup() %>% mutate(moving.average = runMean(.$eventCount))
+write_sheet(page_view, ss = ss, sheet = "page_view")
 
 page_view_unique <- data_1 %>% filter(eventName == "first_visit") %>% group_by(date, month, year, eventName) %>% summarize(eventCount = sum(eventCount), activeUsers = sum(activeUsers)) %>% mutate(eventCountPerUser = eventCount / activeUsers) %>% 
   arrange(date, desc(eventCount)) %>% bind_rows(wix_page_view_unique) %>% ungroup() 
@@ -70,7 +71,7 @@ entrance <- data_1 %>% filter(eventName == "session_start") %>% group_by(date, m
 #moving_average = runMean(page_view$eventCount)
 
 ############ monthly data ###############
-page_view_month <- page_view %>% bind_rows(recovery_pageview) %>% group_by(month, year, eventName) %>% summarize(eventCount = sum(eventCount)) %>% ungroup() %>% arrange(year, month) %>% mutate(
+page_view_month <- page_view %>% group_by(month, year, eventName) %>% summarize(eventCount = sum(eventCount)) %>% ungroup() %>% arrange(year, month) %>% mutate(
   previous = lag(eventCount), 
   change = eventCount - previous,
   changePercentage  = (change/previous) * 100,
