@@ -12,6 +12,8 @@ library(magrittr)
 library(dplyr)
 library(highcharter) # highchart plot
 library(googlesheets4)
+library(knitr)
+library(kableExtra)
 ss <- "1hTfspCDSNFCLp5qOlayq0wwr8gJfTVBbAyWsKaR7Ai8"
 gs4_deauth()
 participant_frequency_long <- read_sheet("1hTfspCDSNFCLp5qOlayq0wwr8gJfTVBbAyWsKaR7Ai8", sheet = "participant_frequency_long")  %>% 
@@ -25,12 +27,12 @@ colnames(participant_frequency_wide)[1] <- "日期"
 ## Table
 
 ```{r table, echo=FALSE}
-formattable(participant_frequency_wide, list('人次' = color_tile("transparent", "pink"), '人數' = color_tile("transparent", "lightblue")))
+participant_frequency_wide %>% mutate('人次' = color_tile("transparent", "pink")(人次), '人數' = color_tile("transparent", "lightblue")(人數)) %>% kable("html", escape = F, full_width = T, align = "c") %>% kable_styling("hover", full_width = T)
 ```
 
 ## Plot
 
-```{r plot, echo=FALSE}
+```{r plot, out.width='100%', echo=FALSE}
 hchart(participant_frequency_long, "spline", hcaes(x = fct_reorder(factor(year.month), rowid), y = eventCount , group = eventName_r)) %>%
       hc_tooltip(
         crosshairs = TRUE,
