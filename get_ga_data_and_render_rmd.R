@@ -20,6 +20,7 @@ library(ggpubr) # combine ggplot
 library(highcharter) # highchart plot
 library(googlesheets4)
 library(jsonlite)
+library(mice)
 #ga_auth()
 #ga_account_list("ga4")
 #gar_deauth()
@@ -83,12 +84,19 @@ page_view_unique_month <- page_view_unique %>% group_by(month, year, eventName) 
   year.month = as.character(str_c(year, month, sep = "/"))) %>% rowid_to_column()
 
 #combined different event
-participant_frequency_long <- page_view_month %>% bind_rows(page_view_unique_month)
+participant_frequency_wide <- page_view_month %>% left_join(page_view_unique_month, by = c("month", "year", "year.month", "rowid"), suffix = c(".frequency", ".participant")) %>% select(year, everything(), year.month, -rowid, -eventName.frequency, -eventName.participant)
+participant_frequency_wide[8, 8] <- NA
+participant_frequency_wide <- participant_frequency_wide %>% select(year.month, eventCount.frequency, eventCount.participant)
+participant_frequency_wide <- complete(mice(participant_frequency_wide, method = 'norm.predict', seed = 500))
+write_csv(participant_frequency_wide, "ga_month_data_wide.csv") %>% sheet_write(ss = ss, sheet = "participant_frequency_wide")
+
+participant_frequency_long <- participant_frequency_wide %>% rowid_to_column() %>% mutate(rowid = str_pad(rowid, 2, "left", "0"), iden = str_c(rowid, year.month, sep = "_")) %>% select(-rowid, -year.month) %>% pivot_longer(!iden, names_to = "eventName", values_to = "eventCount") %>%
+  mutate(rowid = as.numeric(str_sub(iden, 1, 2)), year.month = str_sub(iden, 4)) %>% select(-iden)
+  #page_view_month %>% bind_rows(page_view_unique_month)
 write_csv(participant_frequency_long, "ga_month_data_long.csv")
 write_sheet(participant_frequency_long, ss = ss, sheet = "participant_frequency_long")
 
-participant_frequency_wide <- page_view_month %>% left_join(page_view_unique_month, by = c("month", "year", "year.month", "rowid"), suffix = c(".frequency", ".participant")) %>% select(year, everything(), year.month, -rowid, -eventName.frequency, -eventName.participant)
-write_csv(participant_frequency_wide, "ga_month_data_wide.csv") %>% sheet_write(ss = ss, sheet = "participant_frequency_wide")
+
 
 #render the rmd
 Sys.setlocale(category = "LC_ALL", locale = "cht") # windows
