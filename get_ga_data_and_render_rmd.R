@@ -1,7 +1,7 @@
 # get the current location
 #library(here)
 #here::set_here()
-#setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 #setwd(getSrcDirectory()[1])
 #this.dir <- dirname(parent.frame(2)$ofile)
 #setwd(this.dir)
@@ -19,6 +19,7 @@ library(readxl)
 library(ggpubr) # combine ggplot
 library(highcharter) # highchart plot
 library(googlesheets4)
+library(jsonlite)
 #ga_auth()
 #ga_account_list("ga4")
 #gar_deauth()
@@ -35,6 +36,12 @@ ss <- "1hTfspCDSNFCLp5qOlayq0wwr8gJfTVBbAyWsKaR7Ai8"
 # import wix data
 wix_page_view <- read_xlsx("wix_page_view.xlsx") %>% mutate(date = as.Date(date), month = str_pad(month, 2, "left", "0"), year = as.character(year))
 wix_page_view_unique <- read_xlsx("wix_page_view_unique.xlsx") %>% mutate(date = as.Date(date), month = str_pad(month, 2, "left", "0"), year = as.character(year))
+
+# import recovery JSON (April-01 - 27)
+recovery <- fromJSON("goaccess-1653459380295.json")[["visitors"]][["data"]][1:27,] %>% 
+  mutate(date = lubridate::ymd(data), month = str_pad((lubridate ::month(date)), 2, "left", "0"), year = as.character(lubridate ::year(date)), eventName = "page_view", eventCount = visitors["count"]) %>%
+  select(date, year, month, eventCount, eventName)
+recovery_pageview <- do.call(data.frame, recovery) %>% mutate(eventCount = count) %>% select(-count)
 
 # raw data
 data <- ga_data(ga_account_list("ga4")$propertyId,
@@ -63,7 +70,7 @@ entrance <- data_1 %>% filter(eventName == "session_start") %>% group_by(date, m
 #moving_average = runMean(page_view$eventCount)
 
 ############ monthly data ###############
-page_view_month <- page_view %>% group_by(month, year, eventName) %>% summarize(eventCount = sum(eventCount)) %>% ungroup() %>% arrange(year, month) %>% mutate(
+page_view_month <- page_view %>% bind_rows(recovery_pageview) %>% group_by(month, year, eventName) %>% summarize(eventCount = sum(eventCount)) %>% ungroup() %>% arrange(year, month) %>% mutate(
   previous = lag(eventCount), 
   change = eventCount - previous,
   changePercentage  = (change/previous) * 100,
