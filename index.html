@@ -1,130 +1,321 @@
-<!DOCTYPE HTML>
-<!--
-	Forty by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Re:Fresh by BOKSS</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fidelius - Password Protected File</title>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <style id="fidelius__styling">
+      :root {
+        --font-family: -apple-system;
+        --title_color: #2d3737;
+        --font-size: 16px;
+        --background-color: #f2f2f2;
+        --box-color: #ffffff;
+        --btn-font-color: #ffffff;
+        --btn-bg-color: #19A974;
+        --btn-hover-color: #137752;
+        --modal-overlay: rgba(0, 0, 0, 0.6);
+        --modal-box-color: #ffffff;
+        --modal-title-color: #137752;
+        --modal-font-color: rgba(0, 0, 0, 0.8);
+      }
+      *,
+      *:after,
+      *:before {
+        box-sizing: border-box;
+      }
+      body,
+      html {
+        font-family: var(--font-family), -apple-system, BlinkMacSystemFont, 
+          'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 
+          'Droid Sans', 'Helvetica Neue', sans-serif;
+        font-weight: 300;
+        font-size: var(--font-size);
+        background: var(--background-color);
+        color: var(--title_color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100%;
+      }
+      .fidelius__main {
+        background: var(--box-color);
+        -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        min-width: 480px;
+      }
+      @media (max-width:480px) {
+        .fidelius__main {
+          min-width: 375px;
+        }
+      }
+      @media (max-width:375px) {
+        .fidelius__main {
+          min-width: 315px;
+        }
+      }
+      .fidelius__content {
+        padding: 24px 28px;
+        text-align: center;
+      }
+      .fidelius__content__heading {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: var(--font-size);
+        font-weight: 400;
+        margin: 0 0 12px;
+        line-height: 1;
+      }
+      .fidelius__content__input {
+        display: block;
+        border: solid 1px #ccc;
+        padding: 12px 14px;
+        -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+        font-size: var(--font-size);
+        font-family: var(--font-family);
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 12px;
+        text-align: center;
+      }
+      .fidelius__content__input:focus {
+        outline: none;
+        border-color: var(--btn-bg-color);
+      }
+      .fidelius__content__btn {
+        background-color: var(--btn-bg-color);
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
+        color: var(--btn-font-color);
+        padding: 12px 14px;
+        font-family: var(--font-family), -apple-system, BlinkMacSystemFont, 
+          'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 
+          'Droid Sans', 'Helvetica Neue', sans-serif;
+        font-weight: 300;
+        font-size: var(--font-size);
+        width: 100%;
+        transition: background-color 200ms ease-in-out;
+      }
+      .fidelius__content__btn:hover {
+        background-color: var(--btn-hover-color);
+      }
+      @keyframes headShake {
+        0% {
+          transform: translateX(0);
+        }
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+        6.5% {
+          transform: translateX(-6px) rotateY(-9deg);
+        }
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<a href="index.html" class="logo"><strong>Re:Fresh</strong> <span>by BOKSS</span></a>
-						<nav>
-							<a href="#menu">Menu</a>
-						</nav>
-					</header>
+        18.5% {
+          transform: translateX(5px) rotateY(7deg);
+        }
 
-				<!-- Menu -->
-					<nav id="menu">
-						<ul class="links">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="refresh_website_usage.html">Re:Fresh Website</a></li>
-							<li><a href="https://app.powerbi.com/links/tJFTuzSows?ctid=e276d809-4077-4e26-bccb-996f646d9250&pbi_source=linkShare">Re:Fresh Website (Power BI)</a></li>
-							<li><a href="cbti_summary.html">CBTI (Baseline data)</a></li>
-							<li><a href="ot_summary.html">OT</a></li>
-							<li><a href="volunteer_summary.html">Volunteer (Dummy data)</a></li>
-							<li><a href="sst_summary.html">SST</a></li>
-							<li><a href="volunteer_summary_only_pre_post.html">MMH Volunteer</a></li>
-						</ul>
-						<ul class="actions stacked">
-							<li><a href="#" class="button primary fit">Get Started</a></li>
-						</ul>
-					</nav>
+        31.5% {
+          transform: translateX(-3px) rotateY(-5deg);
+        }
 
-				<!-- Banner -->
-					<section id="banner" class="major">
-						<div class="inner">
-							<header class="major">
-								<h1>Re:Fresh E-Platform</h1>
-							</header>
-							<div class="content">
-								<p>A landing page for all result of Re:Fresh E-Platform research.</p>
-								<ul class="actions">
-									<li><a href="#one" class="button next scrolly">Get Started</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
+        43.5% {
+          transform: translateX(2px) rotateY(3deg);
+        }
 
-				<!-- Main -->
-					<div id="main">
+        50% {
+          transform: translateX(0);
+        }
+      }
+      .fidelius__headShake {
+        animation: headShake 750ms ease-in-out 0ms 1 forwards;
+        animation-name: headShake;
+      }
+      .fidelius__password__div {
+        position: relative;
+      }
+      .fidelius__eye {
+        position: absolute;
+        top: 22.5%;
+        left: 2%;
+        opacity: 0.5;
+        transition: opacity 200ms ease-in-out;
+      }
+      .fidelius__eye:hover {
+        opacity: 1;
+      }
+      .fidelius__eye_open, .fidelius__eye_closed {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        z-index: 2;
+      }
+      .fidelius__icon__hint {
+        cursor: pointer;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 0 12px;
+        line-height: 1;
+        width: 25px;
+        height: 25px;
+        transition: all 200ms ease-in-out;
+      }
+      .fidelius__icon__hint:hover {
+        transform: scale(1.25);
+      }
 
-						<!-- One -->
-							<section id="one" class="tiles">
-								<article>
-									<header class="major">
-										<h3><a href="refresh_website_usage.html" class="link">Re:Fresh Website</a></h3>
-										<p>Google Analytics Data</p>
-									</header>
-								</article>
-								<article>
-									<header class="major">
-										<h3><a href="https://app.powerbi.com/links/tJFTuzSows?ctid=e276d809-4077-4e26-bccb-996f646d9250&pbi_source=linkShare" class="link">Re:Fresh Website (Power BI)</a></h3>
-										<p>Google Analytics Data</p>
-									</header>
-								</article>
-								<article>
-									<header class="major">
-										<h3><a href="cbti_summary.html" class="link">CBTI (Baseline data)</a></h3>
-										<p>Research Result</p>
-									</header>
-								</article>
-								<article>
-									<header class="major">
-										<h3><a href="ot_summary.html" class="link">OT</a></h3>
-										<p>Research Result</p>
-									</header>
-								</article>
-								<article>
-									<header class="major">
-										<h3><a href="volunteer_summary.html" class="link">Volunteer (Dummy data)</a></h3>
-										<p>Research Result</p>
-									</header>
-								</article>
-								<article>
-									<header class="major">
-										<h3><a href="sst_summary.html" class="link">SST</a></h3>
-										<p>Research Result</p>
-									</header>
-								</article>
-								<article>
-									<header class="major">
-										<h3><a href="volunteer_summary_only_pre_post.html" class="link">MMH Volunteer</a></h3>
-										<p>Research Result</p>
-									</header>
-								</article>
+      
+    </style>
+  </head>
+  <body>
+    <div class="fidelius__main">
+      <div class="fidelius__content">
+        <div class="fidelius__heading__div">
+          <h1 class="fidelius__content__heading">PLEASE ENTER THE PASSWORD</h1>
+        </div>
+        <div class="fidelius__password__div">
+          <form action="javascript:void(0);" method="post">
+            <input
+              class="fidelius__content__input"
+              data-id="password"
+              id="password"
+              type="password"
+              name="password"
+              placeholder=""
+              autocomplete="current-password"
+            />
+          </form>
+          <div class="fidelius__eye"><svg xmlns="http://www.w3.org/2000/svg" class="fidelius__eye_open" width="192" height="192" fill="#000000" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><path d="M128,55.99219C48,55.99219,16,128,16,128s32,71.99219,112,71.99219S240,128,240,128,208,55.99219,128,55.99219Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><circle cx="128" cy="128.00061" r="40" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle></svg></div>
+        </div>
+        <button data-id="button" type="button" class="fidelius__content__btn">
+          SUBMIT
+        </button>
+      </div>
+    </div>
+    <script id="fidelius__sodium" src="https://cdnjs.cloudflare.com/ajax/libs/libsodium-wrappers/0.5.4/sodium.min.js"></script>
+    
+    <script id="fidelius__nonce" type="text/plain">ffd99b22ca17aa5470b1cf7bdd269e0c72fd7e9510397bb6</script>
+    <script id="fidelius__content" type="text/plain">d56b70eec73a50d9730c88131587ae6afdd2387ddedb97515dc506a504ac4d3ccf83b334423345168b49001556c32e8ec21463fc65775ed9777b64f75b097484e3ef71117072ae104a2b535d6a52fb675442a3827356cdd7d2bb2cccb61c4419cbb97ecf653c8b5429559f2692715ec44117c11e7246edcb85ee57ff96a1e83e6fe39c655c8179704a1c490182d45ef7345322a1a895f8f9806e13490c54050bfa7426e3f30a2702651876e7d5f99c1b8bb834dc440a64e71eb5dc0995242c830b71c3784e6139b481232c6d8d4fdf5e0c7f3a92f17f1d8749b24adf2a67245cdee682272e0106692602f9ec21b8629c5ab834aa6b9e45e3e4fb1fcd40b17bae2f04d6d9112587c497eee9a61366677f8924cd9b5a93ceda99da0639183440fdaf7605ebac583a80db6f85a65d2c554caa7701883be77eec2eef4c6392fbe75c9a8124895fb87a19ba41a8ae87feee9dc6dc2fabb84faa857396f2801d1768d355904be1670b592d09b096f24f6d355101e8bd398570fa7745f71ab0f2bab84fa6725e399ce0a5d25b934e4dcc7c96183cd100e625fdf6004e6223768833ee4c9b1bb42d74f2fe464a919ca932fe661648ca352fe9e65fca42e7f7f7e1ed6112491aae22d4ca1399422e851b2b3bc178eb4a2175b78994634a6eb8b0d5e4b5e5f8915206456ee8d0128c348e8a24711e5f70e39251e2f8992fbf21f65dafdab0391a404c6206aba029e97bde5f1cb4b42183217c24455cef77c7a1016c689301aadead4c3eb274133fc40dea6ea6581cc6bc61899714aa1b352c23d09b5f95b0451b7d32eff32087d1947fa16641a062c120245c2dc21d39345e5b80b906c1eb37e0fac134d1b94d715e14c14eeeb7bce3c75e9697f0f15ba416ca50168f703b6aec8c10da2646c489b06112d9d55cdce16fb2b299527f40c7767e6c4e741c613421951edef6bfbcae40b32466fcd3876da92c1f2e379bd129d34ca1bfab4b010ebadeaadef85353e13983ce8f6e43b7b65851292106225564c75cbcccf58593894ce8bb50aa0595d35c775a0593b013399385ab3dcc7757a62a20bb26b5b249517afb45ab011bf4faf52cac2617242b87185ede78c4a38ac03afd09d30bdac1f850055463c3366801ce0d5ff0d1e6c4a381267fe0eb237b8fc754619de13b4045d40bb9963d9d926f30d025108753c3ab8f451bb6ad13c7541ca70c23be70cbd393ed8f9f0e0347f8373bfda2cfaf00bad4f6fb5594913ca089e67c2dda72d807f8bc30ba9b8cc0dd3178e6d98c36ea94dcdfbf8de201a6b28058e8ebc0e9e655f89450c99f018c54a7056c6956760eb430c081e7bf687191793c9a7c91c8eec2c9dfed0ec0d7ef1f7b4224e4c500513024c59ccb76e26439b5f2b6d5c85e70643b1468f8c9045d7da181a3cac6809bb6b34d398fb977021dbdb6c09c8efb995249bd764c58862443f20bad451795242c77ad7deedc89bfe0e6c642744e679275d0afb49655c57c4a9f1d8817b49d71c4f2d415c25552e5f49ef486ade9234c5ca82a3da45fc7c07c79a0062628a39ea4ca8f7692f6a6744daad9256e6324b09713af460fffb7bc95bb01fae96b2d5fda33fd0dd20768955ecc612e64300bf4ddfa61bef5e357bfcb3ebdc7db1ff84e3a4a2f0481f0e721b78db24c694403d6a58344da0e9981cca7719edc667d1ab120f67a2102234f3cd3baa13e6d71692e0476aac02c206c8620f51543d385190bb5d93e14840970436286d5830031103add85826a200d5f9b704a704ebeed393957a3ec1aee7469a4b7e084c2a881fc5a2cccb3b6d3abfd00b13a6d2e47bec376c509aca77e7817f6f96f01baeccc1315ddadb4a568c6d8213144dfec3e36a70c2274509d5e701a5e52265752dfdf65e86af6414862893392696e76efdcb66cfea4f099bd0c2966b807faf2863b384862e3a17ae053601fe7e350cfb68c14b606840e96eebe74a03e0ede0c5ec1242443c419bd33100092516da865e01b8eac2f585a4503dad7d4023b92a1b38ad8129dc69cb651f280014d5149c17a784458330e665191a3f2019b77f0cf426869c767c654e3a77fa1d32a0ebecf5f9b76355783ba1bb7f68d0ef141e106d28a651f7b9bde1b8870463ca4ccaf641d41512c509961b92811ac1f8d8e301daffadc291140f15632d414226c06ce4119b30c5c0956d363c5aae7a7d9d269c576da99e3d7e7730ea818715386e923c74ee33cdb3e7fb0b68142dae532599562100198d67edbee3871d4a8b0be84a8ba139c979cb61b9927c19301ba3b8aac05c017fd22dc40e97896e52f4f7a978b8998055cf624464d23fb8521e5dd28c793d5d0d8ee051a57579e9935d9508a8630b7c42c6f0d60e489be9eab2e228f75703078c007863e0962b089c66a266ee599ce97dd9cf9d959765b4f7a54a9dcbc5430c6077d9c2c1573af38b1493754560d0294adee59ad0705876a3d4b886b68886ddaf67c6ec61f5a0d4c56c3ebd5200d5085b3bee07f5ca19d7edd944f738d49307c37263376251154448067ae760de1df1d7a1e14db03693c1805c1cc1bc4bcd7befcc4d6a75398745b18cfaf95fb24ff0d576a977e45efd2364877588961d8c5389ea17c745155afd9b40c2f98ddd565b35197c74d4b6a5f5a38f7f2cc4dbc5ca8cb62963efe24d568408ca480896789a8c878e1bd4eb7e8cdadcd75468633ee8512bba4e2be4ef08b1bfad6d734bf91f3ba8b18ab2ec7ac8c320d1dfd3a738b4faad9feec3d2993c34b3dc9878b8915a46720b55e2f98b9d8744807beda92291cd3427a900503ee5a1adf99ae1e972efabe35b04a26b0ebac9521f8957862b768c512b663f742035a3bd0d21257634c56c5fb321ea69002809902fcd929da014c1c24fccbbe6f0bc9cf0e424fde53892af1c7c40a5dd4093fcebb939edf5fb438f00b18d77ceac9dfb3c99cd88490e2757fd81a65d8d58fcb5ef47dcd7ddd711e8bc266ab0d995126bc1115c0280153203b3956f45ff4ba621086f7f80bcf715f1bc183fac5cb823b5f8811edac5be32e5020dd34e5c7bc08aa1b9d888e9dc2fc8778ba958d675e97f55ae0996ae8f9fe7745d9b565df1250002be25c15e79054277b44ea0443b0781f0536597a48743f21f571d6d2eca4d7766dc3811ea69ae0ebea244e9094b58ace370f584ffd3d93a5652fef0c00a5b6d76b6be2c57364082ebbcc6083710c7d6527f426d78d2ecc66e7d2ba3d1caa1990f6437e23ed101ffdf7c6dbcbabae7563b6bad0b67ad07c1a64e6639565cdd0d7af95d1e87a409b740a50f8e47c432309133f6c060647674e9c7c534080781305e85cc4fee4c45bb12f03f897bfcba60428f9940f7a33183015e936d39b89f0ce383fbdd58d5fa7052ccb4b1af6d1f1df762cbe9c72bc39ae98d604172738bf03c577df5d493ad51b056137bcdf7d7d1ce2cca1cb18f662cedac1ff6345824a49cde2fe34b36a0b3ef5cebe53b425c7cdc7abc1413247a6064a251011f68b75d4b410595410ff44cfa0ea51069b41cb61c41121eb4a3f1fcb2295ea290d91d07a0c72fd6d7a00427943e39fb7066041f058c9c7e4d0bbd893f19d64aff133ddd9cdbeb12c7cb7398b8db810adda5452b1d104284d0b1612cb8610e7e15013bf1213a6fae685dc1a3d2106926d165446f24006247bb1c234b7e1a3f527fb94cb1ba2fc087f8f08c056308a1b8bf725f83a6883000bf16c435f39613f3099b6c6368a43e68433f83c2ac19bb8e2932a86da3db10c25eb2a8d5dc52132388709c7506fd0939eaad58d5d02d9cbdefb756964412e29e7422c74af0b4a65fa615218be918b7be1f80998cd0e9a3f7fb10c79c543f1ce8d3073b2592866d73940fe1c6aa07dfbbe44e297fe20e31fd0617d0dc78973831f856dc9d2f2349ba837d0235e5c6ceee34399b457f19f41a560b2b077057ad66f837ebc00a2e327efbbddc2e03c8645121ca40f06511b1bb6e62a403c2d3d7b21df6707478033bdbf4e9ed928c4e5a5ede605d91b512e32b0c08d55a52a62bb7628b91a752fa190ab8dba56ba718eeb45a37d76be462630111e2a2c3bcab54637fbaffc667c26abe6a4168c1f38ca70e0391d90708b802f9ff511fde41ee10fe762492f3367936fcb2a3fac8d7e8aeae2f83f47ca927f70d9f766d4f515943ffa4400e80ae4fcb832b891d8efd43e3c6abda8e108477a2050d5f56e135d2951ff66c3ef3f9e5ba74e0b3a3048fa72efdc51ef06b5489610385c660abb2cdc9ed88d185d146748b0cd2d9d2657ef84a655e3e53e818702334af6e32f109f154a5eb05eb69dd6ab59ded65ed9fddb8ee2a39804e7694c27c6a55fc934d5b0344018546d482b81f0511a87814de4f283623573eff3b4d076384d69f60418562316a7ed61d014570db598afbd577fabe29252412e1d0b50bf2c5663b85cc1facef2eb4e9c465f15412aa6a4d4e5dcce404cc5e2d6ff64852b8966ef63444b4fa1fa3ba1c27aec1a9367f2007b14283c8987e03aa5b4dcbe072fae9b745f5da2cb499a1ca24d137e4720a29e8d0deff5ef3793bd7b813fa1a0b07446914f2d4c5d8d4feb0edc3d523a423cbfda4cdbf6dce119602277146e3762c9ddf6783fabb20d04ac95313104889aabeea7b731297976dde2036d3be58489157c71bab6d6f1ae957af6ca4e79ea24376626d4af1ff8bc711a67e9e5802baa99769b2995b91ed4a17ab257ea10e18413d148409b05df33ae59f6f5e2743ad3cac344ab4db32f84b2a923cf105123f981d653b4d07bbea15743827434c7b58c39e077d714c94ad8f98eb72d1d3a156d43ff2c7e070b169cd8c45af3ae253418ed2e3d9052c1f3637c10a9c3baae6ee3a4a226033a6f2b8ef62c76f5a26bbeae7b6e9cee79066cb9e367308bb242bf4d8b63a7a7bbe0b11c5f88123fc63612f0f0331f4f2dcf6359cda8a4635df5e4b216f86d829011419e02294166c1ce04e6e41788a0b2f681d8272e0f6e7d491472ec657ea80665aa7d68b397ee4fb9e20573525bf1ffb6cfbce5abaa4fa9ddb061a1d9fcab9aee90f476c9dce18ee2d50f0c6005cebb287f53ea65b43da9f3811bf7cdb272cce821cc964c69f5d290c3c946ae04f0bc7a7e7d87596c1e19a574c0eece6510c79d5f8ee1f2653ad9f5f8deb944cd3a0107f7d9cd76dd59dd3a3afd5d8ffc9d8f0b89f88b70ee05da635b84ecf5e04021cd2874802cea1d91b195c98fded593089a9d2de2205631024285be34e0e8654d78265da67c4daa9f0849bfbcdd562050541a051f6528a5dd1c115f595d99db02dd43a4fc90331fd2c23c7d1c0cb7f908d2aabf9b763b54ad4ae00e8ea4de79f6a162a17944fc30b059080111b7b6142db78bc877769f861be7403aca0f43fcf520d93d2576f634ad4c16a6e695aabc9ee8a982ecf8add7ae73e4a3aafb557782d6cd4f54cc1736409d11f1fcb13afb95fe5d1ecf4b6a8194b71d8fb4ea735cd73245fe3cb3f69d4251a23ac8a2fd01f3b3cb9ab7dd6e34d681ba1e0fa2502e27d5fabfa4a0f44a3b598ca8b232e2fb946383a2e16875d28ed8322ec8a4b7b840e17f781eda264dfd610770bf72c76f6221753ad55bc679accd8d356099e4296bccab581a9287f5e7a0ff66e1333c1f8e41aacc1c1ce5ef7f8eb4dc848057799570519e5b8d13afba142ad462630d495fc9fc46f918fff280fe64b5202acfdb5fc22d88eb2031ecf1e912e933681965bec1fc403da84ef2cc809a84379cbf248f434f822a775055869449ff9e21376d8cb9704fb4410ba539b8f5eb67752b9f002894c402858edbc5ceaafbdef9af76</script>
+    <script id="fidelius__hint" type="text/plain"></script>
+    <script id="fidelius__js">
+      document.addEventListener('DOMContentLoaded', function () {
+        let nonce = sodium.from_hex(
+          document.querySelector('#fidelius__nonce').innerText
+        )
+        let content = sodium.from_hex(
+          document.querySelector('#fidelius__content').innerText,
+        )
+        let hint = document.querySelector('#fidelius__hint').innerText
 
-							</section>
+        if (hint !== "") {
+          let heading_div = document.querySelector(".fidelius__heading__div")
+          heading_div = heading_div.insertAdjacentHTML('beforeend', fidelius__icons.hint)
+          let modal__content__hint = document.querySelector(".modal__content__hint")
+          modal__content__hint.innerText = hint
+          MicroModal.init()
+        }
 
+        let submit_btn = document.querySelector('.fidelius__content__btn')
+        let input = document.querySelector('.fidelius__content__input')
+        input.focus()
+        let content_box = document.querySelector('.fidelius__content')
 
+        input.addEventListener('input', () => {
+          input.style.borderColor = getComputedStyle(document.body).getPropertyValue('--btn-bg-color')
+        })
 
-					</div>
+        function toggle_password_show () {
+          let show_icon = document.querySelector('.fidelius__eye > svg')
+          if (input.type === "password") {
+            input.type = "text"
+            new_icon = document.createRange().createContextualFragment(fidelius__icons.eye_slash)
+            show_icon.replaceWith(new_icon)
+            input.focus()
+          } else {
+            input.type = "password"
+            new_icon = document.createRange().createContextualFragment(fidelius__icons.eye)
+            show_icon.replaceWith(new_icon)
+            input.focus()
+          }
+        }
 
+        let showpass = document.querySelector('.fidelius__eye')
+        ;['click', 'touchend'].forEach(function(ev) {
+          showpass.addEventListener(ev, (ev) => {
+            ev.stopPropagation()
+            ev.preventDefault()
+            toggle_password_show()
+          })
+        })
 
+        function decrypter () {
+          // Get the password and hash it
+          let password = input.value
+          let password_hash = sodium.crypto_generichash(32, sodium.from_string(password))
 
+          try {
+            // Try the password and catch the error to throw "incorrect pass"
+            let html = sodium.crypto_secretbox_open_easy(
+              content,
+              nonce,
+              password_hash,
+            )
+            let html_text = sodium.to_string(html)
+            document.write(html_text)
+            document.close()
+          } catch (error) {
+            // Incorrect password
+            input.style.borderColor = "#E7040F"
+            content_box.classList.add("fidelius__headShake")
+            setTimeout(function() {
+              content_box.classList.remove("fidelius__headShake");
+            }, 250);
+            input.select()
+            input.focus()
+          }
+        }
 
+        ;['click', 'touchend'].forEach(function(ev) {
+          submit_btn.addEventListener(ev, decrypter)
+        })
 
-			</div>
+        document.addEventListener('keyup', (e) => {
+          if (e.keyCode === 13) {
+            decrypter()
+          }
+        })
+      })
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+      var fidelius__icons = {
+        locked:
+          "data:image/svg+xml,%3Csvg class='fidelius__icon__locked' xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23000000' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Ccircle cx='127.99414' cy='140' r='20' fill='none' stroke='%23000000' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'%3E%3C/circle%3E%3Cline x1='127.99414' y1='160' x2='127.99414' y2='184' fill='none' stroke='%23000000' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'%3E%3C/line%3E%3Crect x='39.99414' y='88' width='176' height='128' rx='8' stroke-width='16' stroke='%23000000' stroke-linecap='round' stroke-linejoin='round' fill='none'%3E%3C/rect%3E%3Cpath d='M91.99414,88V52a36,36,0,1,1,72,0V88' fill='none' stroke='%23000000' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'%3E%3C/path%3E%3C/svg%3E",
+        opened:
+          "data:image/svg+xml,%3Csvg class='fidelius__icon__opened' xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23000000' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Ccircle cx='127.99414' cy='140' r='20' fill='none' stroke='%23000000' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'%3E%3C/circle%3E%3Cline x1='127.99414' y1='160' x2='127.99414' y2='184' fill='none' stroke='%23000000' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'%3E%3C/line%3E%3Crect x='39.99414' y='88' width='176' height='128' rx='8' stroke-width='16' stroke='%23000000' stroke-linecap='round' stroke-linejoin='round' fill='none'%3E%3C/rect%3E%3Cpath d='M91.99414,88V52a36,36,0,1,1,72,0' fill='none' stroke='%23000000' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'%3E%3C/path%3E%3C/svg%3E",
+        hint:
+          '<svg data-micromodal-trigger="fidelius-modal" class="fidelius__icon__hint" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><circle cx="128" cy="180" r="12"></circle><path d="M127.9995,144.0045v-8a28,28,0,1,0-28-28" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path></svg>',
+        eye:
+          '<svg xmlns="http://www.w3.org/2000/svg" class="fidelius__eye_open" width="192" height="192" fill="#000000" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><path d="M128,55.99219C48,55.99219,16,128,16,128s32,71.99219,112,71.99219S240,128,240,128,208,55.99219,128,55.99219Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><circle cx="128" cy="128.00061" r="40" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle></svg>',
+        eye_slash:
+          '<svg xmlns="http://www.w3.org/2000/svg" class="fidelius__eye_closed" width="192" height="192" fill="#000000" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="48" y1="40.00122" x2="208" y2="216.00122" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><path d="M154.9071,157.599a40.00028,40.00028,0,0,1-53.8142-59.19562" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><path d="M73.99446,68.59479C33.22519,89.24034,16,128.00122,16,128.00122s32,71.99219,112,71.99219a118.0238,118.0238,0,0,0,53.99756-12.59461" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><path d="M208.60953,169.10059C230.41132,149.57342,240,128.00122,240,128.00122S208,55.99341,128,55.99341a125.31923,125.31923,0,0,0-20.68221,1.68414" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><path d="M135.52737,88.709a40.02411,40.02411,0,0,1,32.29785,35.52874" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path></svg>'
+      }
 
-	</body>
+      function create_favicon (state) {
+        let link = document.createElement('link')
+        link.rel = 'icon'
+        link.type = 'image/x-icon'
+        link.href = fidelius__icons[state]
+        document.getElementsByTagName('head')[0].appendChild(link)
+      }
+      create_favicon('locked')
+    </script>
+    
+  </body>
 </html>
+
